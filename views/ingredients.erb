@@ -1,0 +1,19 @@
+<h1>Current Ingredients</h1>
+
+<% if @ingredients.any?() %>
+  <ul>
+    <% @ingredients.each() do |ingredient| %>
+      <li><a href="/ingredients/<%=ingredient.id%>"><%= ingredient.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no ingredients</p>
+<% end %>
+
+<form action="/ingredients" method="post">
+  <input id="name" type="text" name="name" placeholder="Add a new ingredient">
+  <button type="submit">Add</button>
+
+</form>
+
+<a href="/recipes">Start a new Recipe</a>

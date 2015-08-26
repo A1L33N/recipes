@@ -17,4 +17,9 @@ describe(Ingredient) do
     butter = Ingredient.new({:name => ""})
     expect(butter.save).to eq(false)
   end
+
+  it('converts the name to downcased letters') do
+    water = Ingredient.create({:name => 'WATER'})
+    expect(water.name).to eq('water')
+  end
 end

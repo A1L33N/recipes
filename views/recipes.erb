@@ -1,0 +1,30 @@
+<h1>Here are your recipes</h1>
+
+<% if @recipes.any? %>
+  <ul>
+    <% @recipes.each() do  |recipe|%>
+      <li><a href="/recipes/<%=recipe.id %>"><%= recipe.name %></a></li>
+    <% end %>
+
+  </ul>
+<% else %>
+    <p>You haven't cooked anything yet!</p>
+<% end %>
+
+<form action="/recipes" method="post">
+  <input id="name" type="text" name="name" placeholder="Add a new recipe">
+  <input id="instructions" type="text" name="instructions" placeholder="Add cooking instructions">
+  <select id="rating" type="text" name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <button type="submit">Add recipe</button>
+
+</form>
+
+<p><a href="/ingredients">Add another ingredient</a></p>
+
+</form>
