@@ -13,12 +13,26 @@
 
 <p>Tags:</p>
 <ul>
-<% @recipe.tags.each() do |tag| %>
-      <li><%= tag.name %></li>
-    <% end %>
+  <% @recipe.tags.each() do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %>
 </ul>
 
-<h4>Update this Recipe</h4>
+
+<form action="/recipes/<%=@recipe.id%>/update_name" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="name" placeholder="Enter new name">
+  <button type="submit">Update Name</button>
+
+</form>
+
+<form action="/recipes/<%=@recipe.id%>/update_instructions" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="instructions" placeholder="Enter new instructions">
+  <button type="submit">Update Instructions</button>
+
+</form>
+<!-- <h4>Update this Recipe</h4>
 <form action="/recipes/<%=@recipe.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
 
@@ -64,3 +78,5 @@
     <% end %>
   <button type="submit">Update Recipe</button>
 </form>
+
+ -->
