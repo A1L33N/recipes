@@ -1,0 +1,28 @@
+<h1>Recipe Tags</h1>
+
+<% if @tags.any? %>
+
+  <ul>
+    <% @tags.each() do |tag| %>
+      <li><a href="/tag/<%= tag.id %>"><%= tag.name %></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+  <p>There are no tags yet!</p>
+
+<% end %>
+
+<h3>Add a new tag</h3>
+
+<form action="/tags" method="post">
+  <div class="form-group">
+    <input type="text" name="name" id="name" placeholder="Tag name">
+
+    <button class="btn">Add Tag</button>
+  </div>
+</form>
+
+<p><a href="/recipes">Start a new Recipe</a></p>
+<p><a href="/">Go Home</a></p>
