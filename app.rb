@@ -58,6 +58,15 @@ patch("/recipes/:id/update_instructions") do
   @recipe.update(:instructions => instructions)
   redirect back
 end
+
+patch('/recipes/:id/add_ingredients') do
+  id = params.fetch('id').to_i
+
+  @recipe = Recipe.find(id)
+  ingredient_ids = params.fetch('ingredient_ids')
+  @recipe.update(:ingredient_ids => ingredient_ids)
+  redirect back
+end
 # patch('/recipes/:id') do
 #   id = params.fetch('id').to_i
 #   @recipe = Recipe.find(id)

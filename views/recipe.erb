@@ -32,6 +32,19 @@
   <button type="submit">Update Instructions</button>
 
 </form>
+
+<form action="/recipes/<%=@recipe.id%>/add_ingredients" method="post">
+<input type="hidden" name="_method" value="patch">
+<p><label for="ingredients">Update your ingredients</label></p>
+  <% @ingredients.each() do |ingredient| %>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id() %>"><%= ingredient.name() %>
+      </label>
+    </div>
+  <% end %>
+<button type="submit"> Add more ingredients</button>
+</form>
 <!-- <h4>Update this Recipe</h4>
 <form action="/recipes/<%=@recipe.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
