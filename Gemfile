@@ -8,6 +8,7 @@ gem("sinatra")
 
 group(:test) do
   gem("rspec")
+  gem("shoulda-matchers")
   gem("capybara")
   gem("pry")
 end
