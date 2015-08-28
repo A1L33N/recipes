@@ -24,13 +24,13 @@
   <input type="hidden" name="_method" value="patch">
   <input type="text" name="name" placeholder="Enter new name">
   <button type="submit">Update Name</button>
-
 </form>
+<br>
 
 <form action="/recipes/<%=@recipe.id%>/update_instructions" method="post">
   <input type="hidden" name="_method" value="patch">
-  <input type="text" name="instructions" placeholder="Enter new instructions">
-  <button type="submit">Update Instructions</button>
+  <textarea name="instructions" rows="8" cols="40">Enter new instructions</textarea>
+  <p><button type="submit">Update Instructions</button></p>
 
 </form>
 <br>
