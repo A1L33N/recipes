@@ -26,7 +26,13 @@ post('/recipes') do
   @recipe.update({:ingredient_ids => ingredient_ids})
   tag_ids = params.fetch('tag_ids')
   @recipe.update({:tag_ids => tag_ids})
+  redirect back
+end
 
+delete('/recipes/:id/delete') do
+  id = params.fetch('id').to_i
+  @recipe = Recipe.find(id)
+  @recipe.destroy
   redirect back
 end
 
@@ -40,9 +46,7 @@ end
 
 
 patch("/recipes/:id/update_name") do
-
   id = params.fetch('id').to_i
-
   @recipe = Recipe.find(id)
   name = params.fetch('name')
   @recipe.update(:name => name)
@@ -50,9 +54,7 @@ patch("/recipes/:id/update_name") do
 end
 
 patch("/recipes/:id/update_instructions") do
-
   id = params.fetch('id').to_i
-
   @recipe = Recipe.find(id)
   instructions = params.fetch('instructions')
   @recipe.update(:instructions => instructions)
@@ -61,24 +63,31 @@ end
 
 patch('/recipes/:id/add_ingredients') do
   id = params.fetch('id').to_i
-
   @recipe = Recipe.find(id)
   ingredient_ids = params.fetch('ingredient_ids')
-  @recipe.update(:ingredient_ids => ingredient_ids)
+  ingredient_ids.each() do |id|
+    ingredient = Ingredient.find(id)
+    @recipe.ingredients.push(ingredient)
+  end
   redirect back
 end
-# patch('/recipes/:id') do
-#   id = params.fetch('id').to_i
-#   @recipe = Recipe.find(id)
-#   name = params.fetch('recipe_name')
-#   instructions = params.fetch('instructions')
-#   ingredient_ids = params.fetch('ingredient_ids')
-#   rating = params.fetch('rating').to_i
-#   tag_ids = params.fetch('tag_ids')
-#   @recipe.update({:name =>name, :instructions => instructions, :ingredient_ids => ingredient_ids, :rating => rating, :tag_ids => tag_ids})
-#   redirect back
-# end
-### Ingredients ###
+
+patch('/recipes/:id/update_rating') do
+  id = params.fetch('id').to_i
+  @recipe = Recipe.find(id)
+  rating = params.fetch('rating').to_i
+  @recipe.update({:rating => rating})
+  redirect back
+end
+
+patch('/recipes/:id/add_tags') do
+  id = params.fetch('id').to_i
+  @recipe = Recipe.find(id)
+  tag_ids = params.fetch('tag_ids')
+  @recipe.update({:tag_ids => tag_ids})
+  redirect back
+end
+
 
 get('/ingredients') do
   @ingredients = Ingredient.all
@@ -96,6 +105,13 @@ get('/ingredients/:id') do
   @ingredient = Ingredient.find(id)
   @recipes = @ingredient.recipes
   erb(:ingredient)
+end
+
+delete('/ingredient/:id') do
+  id = params.fetch('id').to_i
+  @ingredient = Ingredient.find(id)
+  @ingredient.destroy
+  redirect('/ingredients')
 end
 
 

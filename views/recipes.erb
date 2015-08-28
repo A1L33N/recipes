@@ -3,7 +3,11 @@
 <% if @recipes.any? %>
   <ul>
     <% @recipes.each() do  |recipe|%>
-      <li><a href="/recipes/<%=recipe.id %>"><%= recipe.name %></a></li>
+      <li><a href="/recipes/<%=recipe.id %>"><%= recipe.name %></a>
+      <form class="" action="/recipes/<%=recipe.id%>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete this recipe</button>
+      </form></li>
     <% end %>
 
   </ul>
@@ -27,8 +31,8 @@
     <p>Oops! Looks like we need some ingredients in our database.<a href="/ingredients">Add ingredients here</a></p>
   <%end%>
 
-
-  <input id="instructions" type="text" name="instructions" placeholder="Add cooking instructions">
+  <textarea name="instructions" rows="8" cols="40">Enter instructions</textarea>
+  
   <p><select id="rating" type="text" name="rating">
     <option value="1">1</option>
     <option value="2">2</option>

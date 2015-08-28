@@ -1,4 +1,5 @@
-<h1><%=@recipe.name%> Details</h1>
+<h1><%=@recipe.name%> details</h1>
+<h3>Rating: <%=@recipe.rating%></h3>
 
 <p>Ingredients:</p>
 <ul>
@@ -32,7 +33,7 @@
   <button type="submit">Update Instructions</button>
 
 </form>
-
+<br>
 <form action="/recipes/<%=@recipe.id%>/add_ingredients" method="post">
 <input type="hidden" name="_method" value="patch">
 <p><label for="ingredients">Update your ingredients</label></p>
@@ -45,32 +46,9 @@
   <% end %>
 <button type="submit"> Add more ingredients</button>
 </form>
-<!-- <h4>Update this Recipe</h4>
-<form action="/recipes/<%=@recipe.id%>" method="post">
+<br>
+<form action="/recipes/<%=@recipe.id%>/update_rating" method="post">
   <input type="hidden" name="_method" value="patch">
-
-
-
-  <p><label for="recipe_name">Enter new recipe name</label>
-  <input type="text" name="recipe_name" value="<%= @recipe.name %>"></p>
-
-
-  <p><label for="instructions">Enter new instructions</label>
-  <input type="text" name="instructions" value="<%= @recipe.instructions %>"></p>
-
-
-
-  <p><label for="ingredients">Update your ingredients</label></p>
-    <% @ingredients.each() do |ingredient| %>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id() %>"><%= ingredient.name() %>
-        </label>
-      </div>
-    <% end %>
-
-
-
   <p><select id="rating" type="text" name="rating">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -78,10 +56,12 @@
     <option value="4">4</option>
     <option value="5">5</option>
   </select> Rate this recipe </p>
+  <button type="submit"> Update Rating</button>
+</form>
 
-
-
-  <p><label for="tags">Select your tags</label></p>
+<form action="/recipes/<%=@recipe.id%>/add_tags" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p><label for="tags">Add tags</label></p>
     <% @tags.each() do |tag| %>
       <div class="checkbox">
         <label>
@@ -89,7 +69,8 @@
         </label>
       </div>
     <% end %>
-  <button type="submit">Update Recipe</button>
+  <button type="submit">Add new tag</button>
+
 </form>
 
- -->
+<a href="/recipes">Return to Recipe List</a>
