@@ -1,76 +1,80 @@
 <h1><%=@recipe.name%> details</h1>
 <h3>Rating: <%=@recipe.rating%></h3>
 
-<p>Ingredients:</p>
-<ul>
-<% @recipe.ingredients.each() do |ingredient| %>
-      <li><%= ingredient.name %></li>
-    <% end %>
-</ul>
+<div class="col-md-8">
+    <p>Ingredients:</p>
+    <ul>
+      <% @recipe.ingredients.each() do |ingredient| %>
+        <li><%= ingredient.name %></li>
+        <% end %>
+      </ul>
 
 
-<p>Instructions: <%= @recipe.instructions() %></p>
+      <p>Instructions: <%= @recipe.instructions() %></p>
 
 
-<p>Tags:</p>
-<ul>
-  <% @recipe.tags.each() do |tag| %>
-    <li><%= tag.name %></li>
-  <% end %>
-</ul>
+      <p>Tags:</p>
+      <ul>
+        <% @recipe.tags.each() do |tag| %>
+        <li><%= tag.name %></li>
+        <% end %>
+      </ul>
+</div>
 
+<div class="col-md-4">
+  <h4>Update your recipe:</h4>
+  <form action="/recipes/<%=@recipe.id%>/update_name" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="text" name="name" placeholder="Enter new name">
+    <button type="submit">Update Name</button>
+  </form>
+  <br>
 
-<form action="/recipes/<%=@recipe.id%>/update_name" method="post">
+  <form action="/recipes/<%=@recipe.id%>/update_instructions" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <textarea name="instructions" rows="8" cols="40">Enter new instructions</textarea>
+    <p><button type="submit">Update Instructions</button></p>
+
+  </form>
+  <br>
+  <form action="/recipes/<%=@recipe.id%>/add_ingredients" method="post">
   <input type="hidden" name="_method" value="patch">
-  <input type="text" name="name" placeholder="Enter new name">
-  <button type="submit">Update Name</button>
-</form>
-<br>
-
-<form action="/recipes/<%=@recipe.id%>/update_instructions" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <textarea name="instructions" rows="8" cols="40">Enter new instructions</textarea>
-  <p><button type="submit">Update Instructions</button></p>
-
-</form>
-<br>
-<form action="/recipes/<%=@recipe.id%>/add_ingredients" method="post">
-<input type="hidden" name="_method" value="patch">
-<p><label for="ingredients">Update your ingredients</label></p>
-  <% @ingredients.each() do |ingredient| %>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id() %>"><%= ingredient.name() %>
-      </label>
-    </div>
-  <% end %>
-<button type="submit"> Add more ingredients</button>
-</form>
-<br>
-<form action="/recipes/<%=@recipe.id%>/update_rating" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <p><select id="rating" type="text" name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select> Rate this recipe </p>
-  <button type="submit"> Update Rating</button>
-</form>
-
-<form action="/recipes/<%=@recipe.id%>/add_tags" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <p><label for="tags">Add tags</label></p>
-    <% @tags.each() do |tag| %>
+  <p><label for="ingredients">Update your ingredients</label></p>
+    <% @ingredients.each() do |ingredient| %>
       <div class="checkbox">
         <label>
-          <input type="checkbox" name="tag_ids[]" value="<%= tag.id() %>"><%= tag.name() %>
+          <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id() %>"><%= ingredient.name() %>
         </label>
       </div>
     <% end %>
-  <button type="submit">Add new tag</button>
+  <button type="submit"> Add more ingredients</button>
+  </form>
+  <br>
+  <form action="/recipes/<%=@recipe.id%>/update_rating" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <p><select id="rating" type="text" name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select> Rate this recipe </p>
+    <button type="submit"> Update Rating</button>
+  </form>
 
-</form>
+  <form action="/recipes/<%=@recipe.id%>/add_tags" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <p><label for="tags">Add tags</label></p>
+      <% @tags.each() do |tag| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="tag_ids[]" value="<%= tag.id() %>"><%= tag.name() %>
+          </label>
+        </div>
+      <% end %>
+    <button type="submit">Add new tag</button>
 
-<a href="/recipes">Return to Recipe List</a>
+  </form>
+
+  <a href="/recipes">Return to Recipe List</a>
+  </div>
