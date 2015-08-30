@@ -1,17 +1,32 @@
-/*html {
-  background: url("https://unsplash.it/1920/1080/?image=488") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+/*body {
+  background-image: url("https://unsplash.it/1980/1080/?image=292");
   background-size: cover;
-
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
 }*/
 
-/*.main {
-  max-width: 60%;
+header {
+  text-align: center;
 }
 
-.update {
-  max-width: 40%;
+h1, h2, h3 {
+  text-align: center;
+}
 
-}*/
+.index  {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.main {
+
+}
+
+.col-md-4 {
+  padding-top: 30px;
+}
+
+form {
+  display: inline;
+}

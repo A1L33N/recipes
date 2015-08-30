@@ -1,4 +1,7 @@
-<h1>Here are your recipes</h1>
+<div class="main">
+
+
+<h2>Here are your recipes</h2>
 
 <% if @recipes.any? %>
   <ul>
@@ -6,7 +9,7 @@
       <li><a href="/recipes/<%=recipe.id %>"><%= recipe.name %></a>
       <form class="" action="/recipes/<%=recipe.id%>/delete" method="post">
         <input type="hidden" name="_method" value="delete">
-        <button type="submit">Delete this recipe</button>
+        <button class="delete_button" type="submit">Delete this recipe</button>
       </form></li>
     <% end %>
 
@@ -14,49 +17,69 @@
 <% else %>
     <p>You haven't cooked anything yet!</p>
 <% end %>
+</div>
 
-<form action="/recipes" method="post">
-  <input id="name" type="text" name="name" placeholder="Add a new recipe">
+<br>
+<br>
+<br>
+<br>
 
-  <% if @ingredients.any?() %>
-  <p><label for="ingredients">Select your ingredients</label></p>
-    <% @ingredients.each() do |ingredient| %>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id() %>"><%= ingredient.name() %>
-        </label>
-      </div>
-    <% end %>
-  <%else%>
-    <p>Oops! Looks like we need some ingredients in our database.<a href="/ingredients">Add ingredients here</a></p>
-  <%end%>
+<div class="recipe-form">
+<h3>Add a new recipe</h3>
+  <div class="col-md-4">
 
-  <textarea name="instructions" rows="8" cols="40">Enter instructions</textarea>
-  
-  <p><select id="rating" type="text" name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select> Rate this recipe </p>
+  <form action="/recipes" method="post">
 
-  <% if @tags.any?() %>
-  <p><label for="tags">Select your tags</label></p>
-    <% @tags.each() do |tag| %>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="tag_ids[]" value="<%= tag.id() %>"><%= tag.name() %>
-        </label>
-      </div>
-    <% end %>
-  <%else%>
-    <p>Oops! Looks like we need some tags in our database.<a href="/tags">Add tags here</a></p>
-  <%end%>
+    <input id="name" type="text" name="name" placeholder="Enter recipe name">
 
-  <button type="submit">Add recipe</button>
+    <% if @ingredients.any?() %>
+    <p><label for="ingredients">Select your ingredients</label></p>
+      <% @ingredients.each() do |ingredient| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id() %>"><%= ingredient.name() %>
+          </label>
+        </div>
+      <% end %>
+      <p><a href="/ingredients">Don't see the ingredient you need? Add more here.</a></p>
+    <%else%>
+      <p>Oops! Looks like we need some ingredients in our database.<a href="/ingredients">Add ingredients here</a></p>
+    <%end%>
+  </div>
 
-</form>
+  <div class="col-md-4">
 
-<p><a href="/ingredients">Add another ingredient</a></p>
-<p><a href="/">Go Home</a></p>
+
+    <textarea name="instructions" rows="8" cols="40">Enter instructions</textarea>
+
+  </div>
+
+
+  <div class="col-md-4">
+    <p><select id="rating" type="text" name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select> Rate this recipe </p>
+
+
+    <% if @tags.any?() %>
+    <p><label for="tags">Select your tags</label></p>
+      <% @tags.each() do |tag| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="tag_ids[]" value="<%= tag.id() %>"><%= tag.name() %>
+          </label>
+        </div>
+      <% end %>
+    <%else%>
+      <p>Oops! Looks like we need some tags in our database.<a href="/tags">Add tags here</a></p>
+    <%end%>
+
+    <button type="submit">Add recipe</button>
+
+  </form>
+  </div>
+</div>
