@@ -88,7 +88,6 @@ patch('/recipes/:id/add_tags') do
   redirect back
 end
 
-####Ingredients
 
 get('/ingredients') do
   @ingredients = Ingredient.all
@@ -116,7 +115,7 @@ delete('/ingredient/:id') do
 end
 
 
-####Tags
+####Tag shiiiiiit
 
 get('/tags') do
   @tags = Tag.all
@@ -127,10 +126,4 @@ post('/tags') do
   name = params.fetch("name")
   @tag = Tag.create({:name => name})
   redirect back
-end
-
-get('/tags/:id') do
-  id = params.fetch('id').to_i
-  @tag = Tag.find(id)
-  erb(:tag)
 end
