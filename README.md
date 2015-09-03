@@ -1,7 +1,10 @@
-Recipe Box
-A simple recipe management app
 
-By Aileen Cacayorin
+# _Recipes
+
+##### _A simple recipe management app 8/28/2015_
+
+#### By _**Aileen Cacayorin**_
+
 
 Description
 
